@@ -3,8 +3,8 @@ import Main from "@/components/task/Main";
 
 export default function Home() {
   return (
-    <div className="min-h-screen font-san pt-20" >
-      <main className="px-10 py-2">
+    <div className="min-h-screen font-san ">
+      <main className="px-10 h-screen pt-20 flex flex-col items-center justify-center ">
         <Main />
       </main>
     </div>

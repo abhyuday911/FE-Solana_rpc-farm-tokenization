@@ -1,5 +1,5 @@
 export const FARM_IDL = {
-    "address": "7SBE29SotX496Tdhr69uTQrG6ADP9Ds3QyAVozFAUno1",
+    "address": "Ard8wQpNdajcUvc9amhbxqdPHt6rDotjDWyt4NTTCkmT",
     "metadata": {
         "name": "farm_tokenization",
         "version": "0.1.0",
@@ -180,6 +180,10 @@ export const FARM_IDL = {
                 }
             ],
             "args": [
+                {
+                    "name": "name",
+                    "type": "string"
+                },
                 {
                     "name": "total_shares",
                     "type": "u64"

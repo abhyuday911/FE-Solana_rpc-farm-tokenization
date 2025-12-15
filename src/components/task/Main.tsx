@@ -1,24 +1,46 @@
 "use client";
-// import { useFarmProgram } from "@/hooks/useFarmProgram";
-// import { Skeleton } from "../ui/skeleton";
-// import { Button } from "../ui/button";
-// import { useInitializeFarm } from "@/hooks/useFarm";
+import { Button } from "../ui/button";
+import { useInitializeFarm } from "@/hooks/useFarm";
+import { useState } from "react";
+import { PublicKey } from "@solana/web3.js";
+import Link from "next/link";
+import { toast } from "sonner";
 
 const Main = () => {
-  // const { program } = useFarmProgram();
-  // const { initializeFarm, isReady } = useInitializeFarm();
+  const { initializeFarm, loading, isReady } = useInitializeFarm();
+  const [farmPubKey, setFarmPubKey] = useState<PublicKey | null>(null);
 
-  // if (!program) {
-  //   return <Skeleton className="h-6 w-2xl" />;
-  // }
+  const createFarm = async () => {
+    try {
+      const { farm } = await initializeFarm();
+      setFarmPubKey(farm);
+      toast.success("Farm created successfully");
+    } catch (err) {
+      toast.error("Failed to create farm");
+      console.error(err);
+    }
+  };
 
-  // const createFarm = () => {
-  //   initializeFarm();
-  // };
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center space-y-4">
-      {/* <h1 className="text-xl px-2">{program._idl.address}</h1>
-      <Button onClick={createFarm}>create farm</Button> */}
+    <div className="space-y-4 flex flex-col items-center justify-center">
+      <>
+        {farmPubKey && (
+          <>
+            <h1 className="text-xl px-2">{farmPubKey?.toString()}</h1>
+            <Button asChild variant={"secondary"}>
+              <Link
+                href={`https://explorer.solana.com/address/${farmPubKey?.toString()}?cluster=devnet`}
+                target="_blank"
+              >
+                Solana Explorer Link
+              </Link>
+            </Button>
+          </>
+        )}
+      </>
+      <Button onClick={createFarm} disabled= {!isReady || loading}>
+        {loading ? "Creating Farm..." : "Create Farm"}
+      </Button>
     </div>
   );
 };

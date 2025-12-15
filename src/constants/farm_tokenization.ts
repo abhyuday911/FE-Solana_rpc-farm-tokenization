@@ -5,7 +5,7 @@
  * IDL can be found at `target/idl/farm_tokenization.json`.
  */
 export type FarmTokenization = {
-  "address": "7SBE29SotX496Tdhr69uTQrG6ADP9Ds3QyAVozFAUno1",
+  "address": "Ard8wQpNdajcUvc9amhbxqdPHt6rDotjDWyt4NTTCkmT",
   "metadata": {
     "name": "farmTokenization",
     "version": "0.1.0",
@@ -186,6 +186,10 @@ export type FarmTokenization = {
         }
       ],
       "args": [
+        {
+          "name": "name",
+          "type": "string"
+        },
         {
           "name": "totalShares",
           "type": "u64"
